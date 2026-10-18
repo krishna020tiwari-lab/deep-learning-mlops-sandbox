@@ -1,0 +1,13 @@
+.git
+.idea
+venv
+.venv
+frontend
+__pycache__
+*.pyc
+Pytorch_Foundation/data
+Pytorch_Foundation/models/*
+!Pytorch_Foundation/models/resnet18_single.onnx
+!Pytorch_Foundation/models/bert_classifier.onnx
+!Pytorch_Foundation/models/bert_classifier.onnx.data
+!Pytorch_Foundation/models/bert_tokenizer

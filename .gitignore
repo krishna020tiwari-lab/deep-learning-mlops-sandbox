@@ -1,0 +1,14 @@
+# Exclude model weights anywhere in the project
+**/*.onnx
+**/*.onnx.data
+**/*.safetensors
+**/*.pth
+**/*.gz
+
+# Exclude datasets
+**/data/
+
+# Exclude virtual environments & IDE folders
+.venv/
+__pycache__/
+.idea/
