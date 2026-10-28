@@ -1,5 +1,4 @@
 import io
-import os
 from contextlib import asynccontextmanager
 from pathlib import Path
 
@@ -97,6 +96,14 @@ def preprocess_image(image_bytes: bytes) -> np.ndarray:
 @app.get("/")
 def root():
     return {"service": "Unified ONNX Inference API", "status": "online"}
+
+@app.get("/health")
+def health():
+    if text_session is None or vision_session is None:
+        raise HTTPException(status_code=503,detail="Models is not Initialized")
+    return {"status":"healthy","vision_model_loaded":vision_session is not None,"text_session_loaded":text_session is not None}
+
+
 
 
 @app.post("/predict/image", response_model=ImagePredictionResponse)

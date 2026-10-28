@@ -1,0 +1,11 @@
+fastapi
+uvicorn
+onnxruntime
+pillow
+numpy
+python-multipart
+transformers
+pytest
+httpx
+streamlit
+requests

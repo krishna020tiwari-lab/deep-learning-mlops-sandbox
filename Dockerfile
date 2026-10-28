@@ -4,7 +4,7 @@ WORKDIR /app
 
 RUN pip install --no-cache-dir fastapi uvicorn onnxruntime pillow numpy python-multipart transformers
 
-COPY Pytorch_Foundation/20_fastapi_vision_service.py /app/Pytorch_Foundation/20_fastapi_vision_service.py
+COPY Pytorch_Foundation/fastapi_vision_service.py /app/Pytorch_Foundation/20_fastapi_vision_service.py
 COPY Pytorch_Foundation/models /app/Pytorch_Foundation/models
 
 ENV PYTHONUNBUFFERED=1
