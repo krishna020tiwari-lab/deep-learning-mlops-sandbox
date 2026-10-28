@@ -11,6 +11,9 @@ def test_health_endpoint():
     fake_tokenizer = MagicMock()
 
     with patch("os.path.exists", return_value=True), \
+         patch("os.path.isfile", return_value=True), \
+         patch("pathlib.Path.exists", return_value=True), \
+         patch("pathlib.Path.is_file", return_value=True), \
          patch("onnxruntime.InferenceSession", return_value=fake_session), \
          patch("transformers.AutoTokenizer.from_pretrained", return_value=fake_tokenizer):
         with TestClient(app) as client:
@@ -21,4 +24,3 @@ def test_health_endpoint():
                 "vision_model_loaded": True,
                 "text_session_loaded": True,
             }
-
