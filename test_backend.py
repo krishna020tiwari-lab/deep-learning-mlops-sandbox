@@ -1,13 +1,18 @@
+from unittest.mock import patch
 from fastapi.testclient import TestClient
-from Pytorch_Foundation.fastapi_vision_service import app
 import importlib
-module = importlib.import_module("Pytorch_Foundation.fastapi_vision_service")
-app = module.app
+service_module = importlib.import_module("Pytorch_Foundation.fastapi_vision_service")
+app = service_module.app
 
 client = TestClient(app)
 
 def test_health_endpoint():
-    with TestClient(app) as client:
-        response = client.get("/health")
-        assert response.status_code == 200
-        assert response.json() == {"status": "healthy","vision_model_loaded":True,"text_session_loaded":True}
+    with patch("os.path.exists" , return_value=True), \
+        patch("onnxruntime.InferenceSession",return_value=True):
+        with TestClient(app) as client:
+            response = client.get("/health")
+            assert response.status_code == 200
+            assert response.json() == {"status": "healthy","vision_model_loaded":True,"text_session_loaded":True}
+
+            data = response.json()
+            assert data["status"] == "healthy"
