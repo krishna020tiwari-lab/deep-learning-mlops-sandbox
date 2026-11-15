@@ -1,7 +1,6 @@
 import torch
 import torch.nn as nn
 import torch.optim as optim
-from networkx.algorithms import similarity
 from torch.nn import CrossEntropyLoss
 from torch.utils.data import Dataset , DataLoader
 
