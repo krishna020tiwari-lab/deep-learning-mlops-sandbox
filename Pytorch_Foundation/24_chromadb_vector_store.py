@@ -1,9 +1,15 @@
 import chromadb
 from chromadb.utils import embedding_functions
-
-client = chromadb.PersistentClient(path="./chroma_db")
+import os
+client = chromadb.PersistentClient(path="./chromadb")
 
 embedding_fn = embedding_functions.SentenceTransformerEmbeddingFunction(model_name="all-MiniLM-L6-v2")
+
+
+
+print("Working directory:", os.getcwd())
+print("DB folder used:   ", os.path.abspath("./chromadb"))
+print("Collections:      ", client.list_collections())
 
 collection = client.get_or_create_collection(name="customer_support_72",embedding_function=embedding_fn,metadata={"hnsw:space": "cosine"})
 print(collection.count())

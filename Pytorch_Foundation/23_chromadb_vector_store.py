@@ -1,7 +1,7 @@
 import chromadb
 from chromadb.utils import embedding_functions
 
-client = chromadb.PersistentClient(path="./chroma_db")
+client = chromadb.PersistentClient(path="./chromadb")
 
 embeddings_fn = embedding_functions.SentenceTransformerEmbeddingFunction(model_name="all-MiniLM-L6-v2")
 
